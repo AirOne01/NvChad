@@ -1,8 +1,33 @@
 dofile(vim.g.base46_cache .. "lsp")
 require "nvchad_ui.lsp"
 
-local M = {}
+-- null-ls --
+local M = {
+  "jose-elias-alvarez/null-ls.nvim",
+  config = function()
+    require "custom.configs.null-ls"
+  end,
+}
 local utils = require "core.utils"
+
+-- setup language servers --
+
+local on_attach = require("plugins.configs.lspconfig").on_attach
+local capabilities = require("plugins.configs.lspconfig").capabilities
+
+local lspconfig = require "lspconfig"
+local servers = {
+  "astro",
+  "rust_analyzer",
+  "tsserver"
+}
+
+for _, lsp in ipairs(servers) do
+  lspconfig[lsp].setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+  }
+end
 
 -- export on_attach & capabilities for custom lspconfigs
 

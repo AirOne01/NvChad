@@ -1,5 +1,11 @@
 local options = {
-  ensure_installed = { "lua-language-server" }, -- not an option from mason.nvim
+  ensure_installed = {
+    "astro-language-server",
+    "html-lsp",
+    "lua-language-server",
+    "rust-analyzer",
+    "typescript-language-server"
+  }, -- not an option from mason.nvim
 
   PATH = "skip",
 
